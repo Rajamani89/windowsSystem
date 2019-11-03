@@ -1,5 +1,5 @@
 #import section
-import os
+import os,sys
 
 #function section
 def printtree(path):
@@ -17,7 +17,13 @@ def printtree(path):
         detailsfoldercount[foldername] = len(subfoldername)
     return detailssubfolder,detailsfile,detailsfilecount,detailsfoldercount
 #input section
-path = input("enter the path with escape sequence you want files and folder tree : ")
+if len(sys.argv) > 1:
+	path = ' '.join(sys.argv[1:])
+# I used system module to accept arguments and arguments is stored in list by sys.argv where the zero index represent the python file name thereby 
+# joining from index 1 using join of string formating 
+else:
+	path = input("enter the path with escape sequence you want files and folder tree : ")
+
 # required variable in empty
 gdetailssubfolder = {}
 gdetailsfile = {}
@@ -36,4 +42,6 @@ print("\n#######################Subfolder dict#######################\n")
 print (gdetailssubfolder)
 print("\n\n#######################file dict#######################\n")
 print (gdetailsfile)
+input("Press enter to exit...")
 
+# NOTE you can use it from cmd run using     -->  pathwalk.py c:\folder1\folder2
